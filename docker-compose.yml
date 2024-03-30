@@ -24,6 +24,7 @@ services:
   #Back-end Spring Boot Application
   scrum-app:
     #The docker file in scrum-app build the jar and provides the docker image with the following name.
+    image: zeinebmessaoudi/backend:latest
     build: ./scrum-app
     container_name: scrum-app
 
@@ -41,6 +42,7 @@ services:
 
   #Fron-end Angular Application
   scrum-ui:
+    image: zeinebmessaoudi/frontend:latest
     build: ./scrum-ui
     container_name: scrum-ui
     ports:

@@ -39,6 +39,7 @@ public class ScrumControllerITCase extends CommonITCase {
 
     @Before
     public void setUp(){
+
         baseURL = "http://localhost:" + port;
     }
 

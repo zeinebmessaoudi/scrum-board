@@ -1,0 +1,36 @@
+image: docker:25.0.3
+
+services:
+  - docker:25.0.3-dind
+
+stages:
+  - build
+  - deploy
+
+variables:
+  DOCKER_REGISTRY: "https://index.docker.io/v1/"
+  DOCKER_ACCESS_PASSWORD: "zeineb13505389"
+  DOCKER_USERNAME: zeinebmessaoudi
+  DOCKER_DRIVER: overlay2
+  DOCKER_TLS_CERTDIR: "/certs"
+  BACKEND_IMAGE_NAME: "zeinebmessaoudi/backend:latest"
+  FRONTEND_IMAGE_NAME: "zeinebmessaoudi/frontend:latest"
+  DB_IMAGE_NAME: "postgres:9.6-alpine"
+
+before_script:
+  - echo "Setting up common environment..."
+
+
+# Définition des jobs
+# Job de construction de l'application
+build:
+  stage: build
+  script:
+    - docker-compose up -d
+
+# Job de déploiement de l'application
+deploy:
+  stage: deploy
+  script:
+    - docker-compose up -d
+
