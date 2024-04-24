@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: scrum-ui-deployment
+  name: {{ .Values.frontendDeployment.name }}
   labels:
-    app: scrum-ui
+    app: {{ .Values.frontendName }}  
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: scrum-ui
+      app: {{ .Values.frontendName }}
   template:
     metadata:
       labels:
-        app: scrum-ui
+        app: {{ .Values.frontendName }}
     spec:
       containers:
       - name: scrum-ui
-        image: zeinebmessaoudi/frontend:latest
+        image: "{{ .Values.image.name }}:{{ .Values.image.tag }}"
         ports:
         - containerPort: 80
 
@@ -29,7 +29,7 @@ metadata:
 spec:
   type: LoadBalancer
   selector:
-    app: scrum-ui
+    app: {{ .Values.frontendName }}
   ports:
   - protocol: TCP
     port: 80

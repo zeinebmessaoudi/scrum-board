@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.backendDeployment.name }}
+  labels:
+    app: {{ .Values.backendName }} scrum-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Values.backendName }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.backendName }}
+    spec:
+      containers:
+      - name: scrum-app
+        image: "{{ .Values.image.name }}:{{ .Values.image.tag }}"
+        ports:
+        - containerPort: 8080
+        env:
+        - name: POSTGRES_USER
+          value: postgres
+
+        - name: POSTGRES_PASSWORD
+          value: scrum
+
+        - name: URL
+          value: jdbc:postgresql://scrum-postgres/scrum
+
+        - name: POSTGRES_DB
+          value: scrum
+        - name: DB_SERVER
+          value: scrum-postgres
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.backendName }}
+spec:
+  selector:
+    app: {{ .Values.backendName }}
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+
+      

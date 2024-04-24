@@ -1,0 +1,37 @@
+frontendName : scrum-ui
+backendName : scrum-app
+dbname : postgres
+
+namespace: default
+
+configmap:
+   name: postgres-config
+   data:
+      postgres-url : jdbc:postgresql://scrum-postgres/scrum
+      postgres-db : scrum
+
+image:
+   name: zeinebmessaoudi/frontend
+   tag: latest
+
+image:
+    name: zeinebmessaoudi/backend
+    tag: latest
+
+
+
+frontendDeployment:
+    name: scrum-ui-deployment
+   
+
+backendDeployment:
+    name:  scrum-app-deployment  
+
+secret:
+   name: postgres-secret 
+   data:
+      postgres-user : cG9zdGdyZXM=
+      postgres-password : c2NydW0=    
+
+ dbDeployment:
+      name:  postgres-deployment    
