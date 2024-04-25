@@ -170,22 +170,5 @@ public class TaskControllerITCase extends CommonITCase {
         assertEquals(task.getTitle(), findTaskInDbById(task.getId()).get().getTitle());
     }
 
-    /*@Test
-    public void whenDeleteSingleTaskById_thenItIsDeletedFromDb(){
 
-        //given
-        Task task = saveSingleTask();
-
-        //when
-        ResponseEntity<String> response = this.restTemplate.exchange(
-                baseURL + "tasks/" + task.getId(),
-                HttpMethod.DELETE,
-                new HttpEntity<>(new HttpHeaders()),
-                String.class);
-
-        //then
-        assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals(String.format("Task with id: %d was deleted", task.getId()), response.getBody());
-        assertFalse(findTaskInDbById(task.getId()).isPresent());
-    }*/
 }

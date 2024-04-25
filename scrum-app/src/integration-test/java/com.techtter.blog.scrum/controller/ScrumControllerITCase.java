@@ -206,22 +206,5 @@ public class ScrumControllerITCase extends CommonITCase {
         assertEquals(scrum.getTitle(), findScrumInDbById(scrum.getId()).get().getTitle());
     }
 
-    /*@Test
-    public void whenDeleteSingleScrumById_thenItIsDeletedFromDb(){
 
-        //given
-        Scrum scrum = saveSingleRandomScrum();
-
-        //when
-        ResponseEntity<String> response = this.restTemplate.exchange(
-                baseURL + "scrums/" + scrum.getId(),
-                HttpMethod.DELETE,
-                new HttpEntity<>(new HttpHeaders()),
-                String.class);
-
-        //then
-        assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals(String.format("Scrum with id: %d was deleted", scrum.getId()), response.getBody());
-        assertFalse(findScrumInDbById(scrum.getId()).isPresent());
-    }*/
 }
