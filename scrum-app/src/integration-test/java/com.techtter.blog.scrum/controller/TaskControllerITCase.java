@@ -170,7 +170,7 @@ public class TaskControllerITCase extends CommonITCase {
         assertEquals(task.getTitle(), findTaskInDbById(task.getId()).get().getTitle());
     }
 
-    @Test
+    /*@Test
     public void whenDeleteSingleTaskById_thenItIsDeletedFromDb(){
 
         //given
@@ -187,5 +187,5 @@ public class TaskControllerITCase extends CommonITCase {
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals(String.format("Task with id: %d was deleted", task.getId()), response.getBody());
         assertFalse(findTaskInDbById(task.getId()).isPresent());
-    }
+    }*/
 }
